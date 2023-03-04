@@ -17,7 +17,7 @@ namespace L01_2020_CG_650.Controllers
         }
 
         /// <summary>
-        /// EndPoint que retorna el listado de todos los equipos existentes
+        /// EndPoint que retorna el listado de todos los platos existentes
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -99,6 +99,26 @@ namespace L01_2020_CG_650.Controllers
             _restauranteContext.SaveChanges();
 
             return Ok(plato);
+        }
+
+        /// <summary>
+        /// EndPoint que retorna los registros de una tabla filtrados por el precio
+        /// </summary>
+        /// <param name="precio"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GetByPrecio/{precio}")]
+        public IActionResult GetPrecio(decimal precio)
+        {
+            List<platos> listadoPlatos = (from e in _restauranteContext.platos
+                                          where e.precio < precio
+                                          select e).ToList();
+
+            if (listadoPlatos == null)
+            {
+                return NotFound();
+            }
+            return Ok(listadoPlatos);
         }
     }
 }

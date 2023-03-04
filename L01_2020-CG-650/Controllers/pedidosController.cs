@@ -17,7 +17,7 @@ namespace L01_2020_CG_650.Controllers
         }
 
         /// <summary>
-        /// EndPoint que retorna el listado de todos los equipos existentes
+        /// EndPoint que retorna el listado de todos los pedidos existentes
         /// </summary>
         /// <returns></returns>
         [HttpGet]
